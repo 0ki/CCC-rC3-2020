@@ -62,6 +62,12 @@ def process(url, path=""):
 		print lh("NOPE")+"That wasn't a real URL"
 		return False
 
+	if savepath.find('/')==-1:
+		savepath += "/"
+
+	if(os.path.normpath(os.path.dirname(savepath)) == os.path.normpath(savepath)):
+		savepath += "/"+"_index"
+
 	if os.path.exists(TARGETDIR+"/"+savepath):
 		print lh("DUPE")+"File "+savepath+" already exists"
 		return True
@@ -73,9 +79,6 @@ def process(url, path=""):
 		return False
 	
 
-
-	if(os.path.normpath(os.path.dirname(savepath)) == os.path.normpath(savepath)):
-		savepath += "/"+"_index"
 
 	folder=TARGETDIR+"/"+os.path.dirname(savepath)
 	
